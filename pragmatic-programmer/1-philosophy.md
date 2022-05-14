@@ -2,7 +2,7 @@
 | 구분  | 내용                       |
 |------|---------------------------|
 | DATE | 2022.05.14                |
-| PAGE | 1. A Pragmatic Philosophy |
+| PART | 1. A Pragmatic Philosophy |
 
 
 ## 1. 기억하고 싶은 내용
