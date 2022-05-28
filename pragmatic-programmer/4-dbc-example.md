@@ -26,7 +26,7 @@ void empty()
 
 ### Implements 
 * 일단 `Blender` 인터페이스를 작성했다. 
-    ```
+    ```java
     public interface Blender {
         
         int getSpeed();
@@ -43,62 +43,76 @@ void empty()
     ```
 
 * 이 객체가 동작했다는 것은 비어있는 상태가 아니라는 것이다. 이는 불변이다. 
-    ```
+    ```java
     @Invariant("isFull()")
-    public interface Blender { ... }
+    public interface Blender {
+        // ...
+    }
     ```
 
 * 이 객체가 동작했다는 것은 속도가 0 초과, 10 이하라는 것이다. 이는 불변이다. 
-    ```
+    ```java
     @Invariant({ "isFull()", "getSpeed() > 0 && getSpeed() < 11" })
-    public interface Blender { ... }
+    public interface Blender {
+        // ...
+    }
     ```
 
 * 속도 설정 시 한 번에 한 칸씩만 속도를 바꿀 수 있다. 모듈을 호출하기 위한 조건이다. 
-    ```
+    ```java
     ...
     @Requires("x == getSpeed() - 1 || x == getSpeed() + 1")
-    void setSpeed(int x) { ... }
+    void setSpeed(int x) {
+        // ...
+    }
     ...
     ```
 
 * 속도 설정 시 속도는 0보다 내려갈 수 없고 10까지 가능하다. 마찬가지로 호출 조건이다. 
-    ```
+    ```java
     ...
-    @Requires({ "x == getSpeed() - 1 || x == getSpeed() + 1", "x > 0", "x < 11 })
-    void setSpeed(int x) { ... }
+    @Requires({ "x == getSpeed() - 1 || x == getSpeed() + 1", "x > 0", "x < 11" })
+    void setSpeed(int x) {
+        // ...
+    }
     ...
     ```
 
 * 속도 설정 시 속도를 설정하고 나면 속도가 해당 값이 된다. 
-    ```
+    ```java
     ...
-    @Requires({ "x == getSpeed() - 1 || x == getSpeed() + 1", "x > 0", "x < 11 })
+    @Requires({ "x == getSpeed() - 1 || x == getSpeed() + 1", "x > 0", "x < 11" })
     @Ensures("getSpeed() == x")
-    void setSpeed(int x) { ... }
+    void setSpeed(int x) { 
+        // ...
+    }
     ...
     ```
 
 * 채우고 나면 full 상태가 된다. 
-    ```
+    ```java
     @Ensures("isFull()")
-    void fill() { ... }
+    void fill() { 
+        // ...
+    }
     ```
 
 * 비우고 나면 full 상태가 아니다. 
-    ```
+    ```java
     @Ensures("!isFull()")
-    void empty() { ... }
+    void empty() {
+        // ...
+    }
     ```
 
 * 종합해보았다. 
-    ```
+    ```java
     @Invariant({ "isFull()", "getSpeed() > 0 && getSpeed() < 11" })
     public interface Blender {
 
         int getSpeed();
         
-        @Requires({ "x == getSpeed() - 1 || x == getSpeed() + 1", "x > 0", "x < 11 })
+        @Requires({ "x == getSpeed() - 1 || x == getSpeed() + 1", "x > 0", "x < 11" })
         @Ensures("getSpeed() == x")
         void setSpeed(int x);
 
