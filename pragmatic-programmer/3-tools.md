@@ -37,7 +37,7 @@
 * 개발자도 셸을 자신에게 맞추어야 한다. 보통 다음 사항들을 바꾼다. 
   * 색깔 조합 설정 
   * 프롬프트 설정: directory path, vcs status, time, etc...
-  * 별칭`alias`과 셸 함수: ex) `alias apt-up = 'sudo apt-get update && sudo apt-get  upgrade`
+  * 별칭`alias`과 셸 함수: ex) `alias apt-up="sudo apt-get update && sudo apt-get upgrade"`
   * 명령어 자동 완성: 탭 키, 확장하면 명령어 인식해 자동 완성 
 
 
@@ -103,3 +103,10 @@
 * IntelliJ - multi cursor shortcut: Shift + Option + 위 방향키 
 * Vs Code - multi cursor shortcut: Shift + Option + Cmd + 아래 방향키 
 * [Stack trace](https://ko.wikipedia.org/wiki/%EC%8A%A4%ED%83%9D_%EC%B6%94%EC%A0%81)
+* alias 지정 방법
+```
+$ vi ~/.zshrc
+alias h2-up="~/Programs/h2/bin/h2.sh"
+
+$ source ~/.zshrc
+```
