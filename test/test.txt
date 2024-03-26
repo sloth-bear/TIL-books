@@ -4,3 +4,9 @@ hello!!!
 adsfadf
 a-2
 commit-3 from feature/1
+kkk
+kkk
+k
+k-conflict
+adf
+sdfklja
